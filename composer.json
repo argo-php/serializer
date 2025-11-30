@@ -1,0 +1,51 @@
+{
+    "name": "argo-php/serializer",
+    "description": "Serializer for PHP",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Babushkin Pavel",
+            "email": "idarksoft@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "8.3.*|8.4.*|8.5.*",
+        "argo-php/attribute-collector": "^1.0",
+        "argo-php/entity-definition": "^1.0",
+        "argo-php/types": "^1.0"
+    },
+    "require-dev": {
+        "nesbot/carbon": "^2.0|^3.0",
+        "illuminate/support": "^10.0|^11.0|^12.0",
+        "mockery/mockery": "^1.6",
+        "phpunit/phpunit": "^12.4",
+        "roave/security-advisories": "dev-latest",
+        "laravel/pint": "^1.26",
+        "vimeo/psalm": "^6.13"
+    },
+    "autoload": {
+        "psr-4": {
+            "Argo\\Serializer\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ArgoTest\\Serializer\\": "tests/"
+        }
+    },
+    "extra": {
+        "hyperf": {
+            "config": "Argo\\Serializer\\DI\\HyperfConfigProvider"
+        },
+        "laravel": {
+            "providers": [
+                "Argo\\Serializer\\DI\\LaravelServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "pint": "vendor/bin/pint",
+        "psalm": "vendor/bin/psalm --output-format=phpstorm --no-cache"
+    }
+}
