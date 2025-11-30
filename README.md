@@ -1,4 +1,4 @@
-# argo/serializer
+# argo-php/serializer
 
 An object serializer (hydrator) for PHP.
 
