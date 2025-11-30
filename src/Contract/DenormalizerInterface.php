@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Argo\Serializer\Contract;
 
 use Argo\Serializer\Context\ContextBag;
+use Argo\Serializer\Exception\DenormalizationException;
 use Argo\Types\TypeInterface;
 
 interface DenormalizerInterface
@@ -12,7 +13,9 @@ interface DenormalizerInterface
     /**
      * @template TType
      * @param TypeInterface<TType> $type
-     * @return TType|null
+     * @return TType
+     *
+     * @throws DenormalizationException
      */
     public function denormalize(
         mixed $data,

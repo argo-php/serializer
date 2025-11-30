@@ -18,7 +18,7 @@ final readonly class ChainDecoder implements DecoderInterface
     }
 
     /**
-     * @throws UnsupportedFormatException
+     * @inheritDoc
      */
     public function decode(string $data, string $format, ContextBag $contextBag = new ContextBag()): mixed
     {

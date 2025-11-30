@@ -7,7 +7,10 @@ namespace Argo\Serializer\Exception\Validation;
 use Argo\Serializer\Context\Internal\PathContext;
 use Argo\Serializer\Exception\ValidationException;
 
-final class RequiredException extends ValidationException
+/**
+ * @api
+ */
+class RequiredException extends ValidationException
 {
     public function __construct(PathContext|string $field)
     {

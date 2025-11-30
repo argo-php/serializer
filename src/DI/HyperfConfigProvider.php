@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Argo\Serializer\DI;
 
 use Argo\Serializer\ContextFiller\AttributeContextFiller;

@@ -6,7 +6,10 @@ namespace Argo\Serializer\Exception;
 
 use Argo\Types\TypeInterface;
 
-final class InvalidArgumentTypeException extends InvalidArgumentException
+/**
+ * @api
+ */
+class InvalidArgumentTypeException extends InvalidArgumentException
 {
     public function __construct(TypeInterface $actualType, TypeInterface $expectedTypes)
     {

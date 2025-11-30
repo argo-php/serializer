@@ -4,4 +4,7 @@ declare(strict_types=1);
 
 namespace Argo\Serializer\Exception;
 
-final class SkipPropertyNormalizationException extends \RuntimeException {}
+/**
+ * @api
+ */
+class SkipPropertyNormalizationException extends \RuntimeException {}

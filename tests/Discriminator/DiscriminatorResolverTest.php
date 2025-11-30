@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace ArgoTest\Serializer\Discriminator;
 
-use Argo\AttributeCollector\AttributeManager;
 use Argo\AttributeCollector\Collection\AttributeCollection as CollectorAttributeCollection;
 use Argo\AttributeCollector\Contract\AttributeManagerInterface;
 use Argo\EntityDefinition\Collection\AttributeCollection;

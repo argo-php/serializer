@@ -9,6 +9,7 @@ use Argo\Serializer\Context\ContextBag;
 use Argo\Serializer\Contract\NormalizerAwareInterface;
 use Argo\Serializer\Contract\NormalizerInterface;
 use Argo\Serializer\Exception\InvalidArgumentException;
+use Argo\Serializer\Exception\NormalizationException;
 
 /**
  * @api
@@ -19,6 +20,7 @@ class JsonSerializableNormalizer implements NormalizerInterface, NormalizerAware
 
     /**
      * @throws InvalidArgumentException
+     * @throws NormalizationException
      */
     public function normalize(
         mixed      $data,

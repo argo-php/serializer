@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Argo\Serializer\Exception;
 
-final class UnsupportedFormatException extends SerializerException
+/**
+ * @api
+ */
+class UnsupportedFormatException extends SerializerException
 {
     public function __construct(string $message, \Throwable $previous = null)
     {

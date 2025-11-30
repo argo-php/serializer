@@ -7,7 +7,10 @@ namespace Argo\Serializer\Exception\Validation;
 use Argo\Serializer\Context\Internal\PathContext;
 use Argo\Serializer\Exception\ValidationException;
 
-final class UnexpectedEnumValueException extends ValidationException
+/**
+ * @api
+ */
+class UnexpectedEnumValueException extends ValidationException
 {
     /**
      * @param list<int|string>|class-string<\BackedEnum> $expectedValues

@@ -19,7 +19,6 @@ use Argo\Serializer\Contract\NormalizerInterface;
 use Argo\Serializer\Contract\SerializerAwareInterface;
 use Argo\Serializer\Contract\SerializerInterface;
 use Argo\Serializer\Contract\SerializerValidatorInterface;
-use Argo\Serializer\Exception\NormalizationException;
 use Argo\Serializer\Exception\UnsupportedFormatException;
 use Argo\Serializer\Serializer\Chain\ChainDecoder;
 use Argo\Serializer\Serializer\Chain\ChainDenormalizer;
@@ -100,22 +99,23 @@ readonly class Serializer implements
     }
 
     /**
-     * @throws UnsupportedFormatException
+     * @inheritDoc
      */
     public function decode(string $data, string $format, ContextBag $contextBag = new ContextBag()): mixed
     {
         return $this->decoder->decode($data, $format, $contextBag);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function supportsDecoding(string $format, ContextBag $contextBag = new ContextBag()): bool
     {
         return $this->decoder->supportsDecoding($format, $contextBag);
     }
 
     /**
-     * @template TType
-     * @param TypeInterface<TType> $type
-     * @return TType
+     * @inheritDoc
      */
     public function denormalize(
         mixed $data,
@@ -137,6 +137,9 @@ readonly class Serializer implements
         return $this->denormalizer->denormalize($data, $type, $format, $contextBag);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function supportsDenormalization(
         mixed $data,
         TypeInterface $type,
@@ -146,6 +149,9 @@ readonly class Serializer implements
         return $this->denormalizer->supportsDenormalization($data, $type, $format, $contextBag);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function supportsDenormalizationData(
         mixed $data,
         TypeInterface $type,
@@ -156,20 +162,23 @@ readonly class Serializer implements
     }
 
     /**
-     * @throws UnsupportedFormatException
+     * @inheritDoc
      */
     public function encode(mixed $data, string $format, ContextBag $contextBag = new ContextBag()): string
     {
         return $this->encoder->encode($data, $format, $contextBag);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function supportsEncoding(string $format, ContextBag $contextBag = new ContextBag()): bool
     {
         return $this->encoder->supportsEncoding($format, $contextBag);
     }
 
     /**
-     * @throws NormalizationException
+     * @inheritDoc
      */
     public function normalize(
         mixed $data,
@@ -179,14 +188,16 @@ readonly class Serializer implements
         return $this->normalizer->normalize($data, $format, $contextBag);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function supportsNormalization(mixed $data, string $format = null, ContextBag $contextBag = new ContextBag()): bool
     {
         return $this->normalizer->supportsNormalization($data, $format, $contextBag);
     }
 
     /**
-     * @throws UnsupportedFormatException
-     * @throws NormalizationException
+     * @inheritDoc
      */
     public function serialize(mixed $data, string $format, ContextBag $contextBag = new ContextBag()): string
     {
@@ -202,10 +213,7 @@ readonly class Serializer implements
     }
 
     /**
-     * @template TType
-     * @param TypeInterface<TType> $type
-     * @return TType
-     * @throws UnsupportedFormatException
+     * @inheritDoc
      */
     public function deserialize(
         string $data,

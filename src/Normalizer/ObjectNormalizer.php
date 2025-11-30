@@ -32,9 +32,14 @@ use Argo\Serializer\Contract\NormalizerAwareInterface;
 use Argo\Serializer\Contract\NormalizerInterface;
 use Argo\Serializer\DataHelper;
 use Argo\Serializer\Exception\CircularReferenceException;
+use Argo\Serializer\Exception\DecodeException;
+use Argo\Serializer\Exception\DenormalizationException;
+use Argo\Serializer\Exception\EncodeException;
 use Argo\Serializer\Exception\InvalidArgumentException;
 use Argo\Serializer\Exception\InvalidDataTypeException;
+use Argo\Serializer\Exception\NormalizationException;
 use Argo\Serializer\Exception\SkipPropertyNormalizationException;
+use Argo\Serializer\Exception\UnsupportedFormatException;
 use Argo\Serializer\Exception\Validation\IncorrectTypeException;
 use Argo\Serializer\Exception\Validation\RequiredException;
 use Argo\Serializer\Exception\ValidationBagException;
@@ -234,6 +239,9 @@ class ObjectNormalizer implements
     /**
      * @throws SkipPropertyNormalizationException
      * @throws RequiredException
+     * @throws DenormalizationException
+     * @throws UnsupportedFormatException
+     * @throws DecodeException
      */
     private function prepareValue(
         array $data,
@@ -287,13 +295,15 @@ class ObjectNormalizer implements
                 $format,
                 $propertyContextBag,
             );
-        } elseif ($definition->hasDefaultValue) {
-            return $definition->defaultValue;
-        } elseif ($skipNoValue) {
-            throw new SkipPropertyNormalizationException();
-        } else {
-            throw new RequiredException($pathContext);
         }
+        if ($definition->hasDefaultValue) {
+            return $definition->defaultValue;
+        }
+        if ($skipNoValue) {
+            throw new SkipPropertyNormalizationException();
+        }
+
+        throw new RequiredException($pathContext);
     }
 
     public function supportsDenormalization(
@@ -470,6 +480,9 @@ class ObjectNormalizer implements
 
     /**
      * @throws SkipPropertyNormalizationException
+     * @throws UnsupportedFormatException
+     * @throws EncodeException
+     * @throws NormalizationException
      */
     private function normalizeProperty(
         object $object,

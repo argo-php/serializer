@@ -8,7 +8,10 @@ use Argo\Serializer\Context\Internal\PathContext;
 use Argo\Serializer\Exception\ValidationException;
 use Argo\Types\TypeInterface;
 
-final class IncorrectTypeException extends ValidationException
+/**
+ * @api
+ */
+class IncorrectTypeException extends ValidationException
 {
     public function __construct(PathContext|string $field, TypeInterface|string $expectedType, TypeInterface|string $actualType)
     {

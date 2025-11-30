@@ -18,7 +18,7 @@ final readonly class ChainEncoder implements EncoderInterface
     }
 
     /**
-     * @throws UnsupportedFormatException
+     * @inheritDoc
      */
     public function encode(mixed $data, string $format, ContextBag $contextBag = new ContextBag()): string
     {

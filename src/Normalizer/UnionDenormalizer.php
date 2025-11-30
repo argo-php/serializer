@@ -11,6 +11,7 @@ use Argo\Serializer\Context\Internal\PathContext;
 use Argo\Serializer\Contract\DenormalizerAwareInterface;
 use Argo\Serializer\Contract\DenormalizerInterface;
 use Argo\Serializer\Contract\DiscriminatorResolverInterface;
+use Argo\Serializer\Exception\DenormalizationException;
 use Argo\Serializer\Exception\InvalidArgumentTypeException;
 use Argo\Serializer\Exception\ValidationException;
 use Argo\Types\Complex\UnionType;
@@ -31,6 +32,7 @@ class UnionDenormalizer implements DenormalizerInterface, DenormalizerAwareInter
      * @psalm-param TypeInterface|UnionType $type
      * @throws ValidationException
      * @throws InvalidArgumentTypeException
+     * @throws DenormalizationException
      */
     public function denormalize(
         mixed         $data,
