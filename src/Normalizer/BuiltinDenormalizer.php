@@ -8,6 +8,7 @@ use Argo\EntityDefinition\TypeReflector\VariableTypeReflectorInterface;
 use Argo\Serializer\Context\ContextBag;
 use Argo\Serializer\Contract\DenormalizerInterface;
 use Argo\Serializer\Exception\InvalidArgumentException;
+use Argo\Types\Alias\IntConstType;
 use Argo\Types\Atomic\ArrayType;
 use Argo\Types\Atomic\BoolType;
 use Argo\Types\Atomic\FloatType;
@@ -78,14 +79,42 @@ class BuiltinDenormalizer implements DenormalizerInterface
         $actualType = $this->variableTypeReflector->getVariableType($data);
 
         return match (true) {
-            $type instanceof ObjectType => $actualType instanceof ArrayType || $actualType instanceof ObjectType,
-            $type instanceof IntType => $actualType instanceof IntType,
-            $type instanceof FloatType => $actualType instanceof FloatType || $actualType instanceof IntType,
-            $type instanceof BoolType => $actualType instanceof BoolType,
-            $type instanceof StringType => $actualType instanceof IntType || $actualType instanceof FloatType || $actualType instanceof StringType,
+            $type instanceof ObjectType => $this->isCastableToObject($actualType, $contextBag),
+            $type instanceof IntType => $this->isCastableToInt($actualType, $contextBag),
+            $type instanceof FloatType => $this->isCastableToFloat($actualType, $contextBag),
+            $type instanceof BoolType => $this->isCastableToBool($actualType, $contextBag),
+            $type instanceof StringType => $this->isCastableToString($actualType, $contextBag),
             $type instanceof NullType => $actualType instanceof NullType,
             $type instanceof MixedType => true,
             default => false,
         };
+    }
+
+    private function isCastableToObject(TypeInterface $type, ContextBag $contextBag): bool
+    {
+        return $type instanceof ArrayType || $type instanceof ObjectType;
+    }
+
+    private function isCastableToInt(TypeInterface $type, ContextBag $contextBag): bool
+    {
+        return $type instanceof IntType;
+    }
+
+    private function isCastableToFloat(TypeInterface $type, ContextBag $contextBag): bool
+    {
+        return $type instanceof FloatType || $type instanceof IntType;
+    }
+
+    private function isCastableToBool(TypeInterface $type, ContextBag $contextBag): bool
+    {
+        return $type instanceof BoolType
+            || ($type instanceof IntConstType && ($type->value === 0 || $type->value === 1));
+    }
+
+    private function isCastableToString(TypeInterface $type, ContextBag $contextBag): bool
+    {
+        return $type instanceof IntType
+            || $type instanceof FloatType
+            || $type instanceof StringType;
     }
 }
