@@ -259,7 +259,7 @@ class ObjectNormalizer implements
             }
             if (
                 DataHelper::head($argumentContext->normalizedPath) !== '#'
-                && !str_starts_with(DataHelper::head($argumentContext->normalizedPath), '@')
+                && !str_starts_with((string) DataHelper::head($argumentContext->normalizedPath), '@')
             ) {
                 $argumentContext = $argumentContext->prependToNormalizedPath('#');
             }

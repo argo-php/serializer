@@ -24,7 +24,7 @@ final readonly class ReferencesContext implements ContextInterface
 
         $objectId = $this->getObjectId($object);
         if (array_key_exists($objectId, $references)) {
-            $references[$objectId] = $references[$objectId] + 1;
+            $references[$objectId] += 1;
         } else {
             $references[$objectId] = 1;
         }

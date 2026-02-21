@@ -21,6 +21,7 @@ use Illuminate\Support\ServiceProvider;
  */
 final class LaravelServiceProvider extends ServiceProvider
 {
+    #[\Override]
     public function register(): void
     {
         $this->app->bind(DiscriminatorResolverInterface::class, DiscriminatorResolver::class);

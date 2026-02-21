@@ -6,7 +6,7 @@ namespace Argo\Serializer\Context\Internal;
 
 use Argo\Serializer\Contract\ContextInterface;
 
-final readonly class PathContext implements ContextInterface
+final readonly class PathContext implements ContextInterface, \Stringable
 {
     public function __construct(
         public string $path = '',
