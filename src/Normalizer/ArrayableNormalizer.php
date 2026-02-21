@@ -22,7 +22,7 @@ class ArrayableNormalizer implements NormalizerInterface, NormalizerAwareInterfa
      * @throws InvalidArgumentException
      * @throws NormalizationException
      */
-    public function normalize(mixed $data, string $format = null, ContextBag $contextBag = new ContextBag()): array|string|int|float|bool|object|null
+    public function normalize(mixed $data, ?string $format = null, ContextBag $contextBag = new ContextBag()): array|string|int|float|bool|object|null
     {
         /** @psalm-suppress ArgumentTypeCoercion,UndefinedClass */
         if (

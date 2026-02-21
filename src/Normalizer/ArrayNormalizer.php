@@ -74,7 +74,7 @@ class ArrayNormalizer implements
         return $result;
     }
 
-    public function supportsNormalization(mixed $data, string $format = null, ContextBag $contextBag = new ContextBag()): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, ContextBag $contextBag = new ContextBag()): bool
     {
         return is_iterable($data);
     }

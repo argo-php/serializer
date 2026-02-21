@@ -9,7 +9,7 @@ namespace Argo\Serializer\Exception;
  */
 class EncodeException extends SerializerException
 {
-    public function __construct(string $message, \Throwable $previous = null)
+    public function __construct(string $message, ?\Throwable $previous = null)
     {
         parent::__construct($message, 1120, $previous);
     }

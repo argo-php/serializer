@@ -9,7 +9,7 @@ namespace Argo\Serializer\Exception;
  */
 class UnsupportedFormatException extends SerializerException
 {
-    public function __construct(string $message, \Throwable $previous = null)
+    public function __construct(string $message, ?\Throwable $previous = null)
     {
         parent::__construct($message, 1100, $previous);
     }

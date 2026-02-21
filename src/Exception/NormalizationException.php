@@ -14,7 +14,7 @@ class NormalizationException extends SerializerException
     public function __construct(
         string $message,
         private readonly PathContext $pathContext,
-        \Throwable $previous = null,
+        ?\Throwable $previous = null,
     ) {
         parent::__construct($message, 1300, $previous);
     }

@@ -182,7 +182,7 @@ readonly class Serializer implements
      */
     public function normalize(
         mixed $data,
-        string $format = null,
+        ?string $format = null,
         ContextBag $contextBag = new ContextBag(),
     ): array|string|int|float|bool|object|null {
         return $this->normalizer->normalize($data, $format, $contextBag);
@@ -191,7 +191,7 @@ readonly class Serializer implements
     /**
      * @inheritDoc
      */
-    public function supportsNormalization(mixed $data, string $format = null, ContextBag $contextBag = new ContextBag()): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, ContextBag $contextBag = new ContextBag()): bool
     {
         return $this->normalizer->supportsNormalization($data, $format, $contextBag);
     }
