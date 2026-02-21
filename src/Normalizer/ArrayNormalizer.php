@@ -40,7 +40,7 @@ class ArrayNormalizer implements
      */
     public function normalize(
         mixed $data,
-        string $format = null,
+        ?string $format = null,
         ContextBag $contextBag = new ContextBag(),
     ): array {
         if (!is_iterable($data)) {
