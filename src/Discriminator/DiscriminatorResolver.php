@@ -163,7 +163,7 @@ final readonly class DiscriminatorResolver implements DiscriminatorResolverInter
         }
 
         $typeFieldValue = $value[$attribute->fieldName];
-        if (!array_key_exists($typeFieldValue, $attribute->map)) {
+        if (!array_key_exists((string) $typeFieldValue, $attribute->map)) {
             if ($attribute->defaultClassName !== null) {
                 return new ClassType($attribute->defaultClassName);
             }

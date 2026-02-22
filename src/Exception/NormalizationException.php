@@ -9,7 +9,7 @@ use Argo\Serializer\Context\Internal\PathContext;
 /**
  * @api
  */
-class NormalizationException extends SerializerException
+class NormalizationException extends SerializerException implements HasContextInterface
 {
     public function __construct(
         string $message,
@@ -22,5 +22,12 @@ class NormalizationException extends SerializerException
     public function getPathContext(): PathContext
     {
         return $this->pathContext;
+    }
+
+    public function context(): array
+    {
+        return [
+            'path' => (string) $this->pathContext
+        ];
     }
 }

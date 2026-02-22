@@ -9,15 +9,29 @@ use Argo\Types\TypeInterface;
 /**
  * @api
  */
-class InvalidDataTypeException extends InvalidArgumentException
+class InvalidDataTypeException extends InvalidArgumentException implements HasContextInterface
 {
-    public function __construct(mixed $data, TypeInterface $expectedTypes)
-    {
+    public string $actualType;
+
+    public function __construct(
+        public mixed $data,
+        public TypeInterface $expectedTypes,
+    ) {
+        $this->actualType = get_debug_type($data);
+
         $message = sprintf(
             'The data must have type of [%s], actual is [%s]',
             $expectedTypes,
-            get_debug_type($data),
+            $this->actualType,
         );
         parent::__construct($message);
+    }
+
+    public function context(): array
+    {
+        return [
+            'actualType' => $this->actualType,
+            'expectedTypes' => $this->expectedTypes,
+        ];
     }
 }

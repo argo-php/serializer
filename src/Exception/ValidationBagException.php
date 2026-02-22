@@ -7,7 +7,7 @@ namespace Argo\Serializer\Exception;
 /**
  * @api
  */
-class ValidationBagException extends SerializerException
+class ValidationBagException extends SerializerException implements HasContextInterface
 {
     /** @var array<ValidationException> */
     public array $exceptions;
@@ -30,5 +30,12 @@ class ValidationBagException extends SerializerException
     public function empty(): bool
     {
         return count($this->exceptions) === 0;
+    }
+
+    public function context(): array
+    {
+        return [
+            'exceptions' => array_map(fn (ValidationException $exception) => $exception->context(), $this->exceptions),
+        ];
     }
 }

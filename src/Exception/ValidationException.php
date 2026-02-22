@@ -9,7 +9,7 @@ use Argo\Serializer\Context\Internal\PathContext;
 /**
  * @api
  */
-class ValidationException extends SerializerException
+class ValidationException extends SerializerException implements HasContextInterface
 {
     public function __construct(
         private readonly PathContext|string $field,
@@ -27,5 +27,14 @@ class ValidationException extends SerializerException
     public function getRule(): string
     {
         return $this->rule;
+    }
+
+    public function context(): array
+    {
+        return [
+            'message' => $this->getMessage(),
+            'field' => $this->getField(),
+            'rule' => $this->getRule(),
+        ];
     }
 }
